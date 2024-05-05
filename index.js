@@ -8,7 +8,8 @@ const port = 3000;
 
 app.set("view engine", "ejs");
 app.use(express.static(path.join(__dirname, "publica")));
-//Substituindo rota
+
+//Trazendo rotas do arquivo só para isso
 app.use(routes)
 
 app.listen(port, () => {
