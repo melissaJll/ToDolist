@@ -2,6 +2,8 @@
 const express = require("express");
 const path = require("path");
 const routes = require("./rotas/routes")
+const conexaoDB = require('./banco/db')
+
 
 const app = express();
 const port = 3000;
