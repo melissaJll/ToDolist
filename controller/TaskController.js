@@ -13,8 +13,8 @@ const inserirTarefa = (req, res) => {
     // Convertendo o valor do checkbox para booleano
     const statusTarefa = req.body.statusTarefa ? true : false;
     const prioridade = req.body.prioridade;
-    
-    const sql = `INSERT INTO Tarefas (nomeTarefa, dataCriacao, statusTarefa, prioridade) VALUES (?, ?, ?, ?)`;
+
+    const sql = `INSERT INTO Tarefas (nomeTarefa, dataCriacao, statusTarefa, prioridade) VALUES (?, NOW(), ?, ?)`;
 
     conexao.query(sql, [nomeTarefa, dataCriacao, statusTarefa, prioridade], (error, results) => {
         if (error) {
