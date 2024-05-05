@@ -1,14 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>To do list</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
     <h1>Teste</h1>
-    
+
+    <form method="post" action="/inserir">
+      <input
+        type="text"
+        name="nomeTarefa"
+        id="nomeTarefa"
+        placeholder="Tarefas"
+        required
+      />
+      <input type="datetime-local" name="dataCriacao" id="dataCriacao" />
+      <input type="checkbox" name="statusTarefa" id="statusTarefa" />
+      <select name="prioridade" id="prioridade" required>
+        <option value="Alta">Alta</option>
+        <option value="Média">Média</option>
+        <option value="Baixa">Baixa</option>
+      </select>
+      <button type="submit">Adicionar</button>
+    </form>
+
     <script src="script.js"></script>
-</body>
+  </body>
 </html>
