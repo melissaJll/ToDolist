@@ -5,7 +5,7 @@ const port = 3000;
 app.set("view engine", "ejs")
 
 app.get('/', function (req, res) {
-    //nome da pasta
+    //nome da pasta ejs
   res.render("index")
 })
 
