@@ -1,4 +1,7 @@
 const routes = require("express").Router();
-import { getAll } from "../controller/TaskController";
+//import { getAll } from "../controller/TaskController";
+const TaskController = require("../controller/TaskController")
 
-routes.get("/", getAll)
+routes.get("/", TaskController.getAll);
+
+module.exports = routes;
