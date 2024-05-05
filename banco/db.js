@@ -18,4 +18,4 @@ const conexaoDB = conexao.connect((err)=>{
     }
 })
 
-module.exports = conexaoDB
+module.exports = conexao
