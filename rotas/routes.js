@@ -10,6 +10,6 @@ routes.post("/inserir", TaskController.inserirTarefa);
 
 //routes.post("/excluir", TaskController.excluirTarefa);
 
-routes.get("/tarefas", TaskController.getAll);
+routes.get("/", TaskController.getAll);
  
 module.exports = routes;

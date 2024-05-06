@@ -14,9 +14,9 @@ const inserirTarefa = (req, res) => {
     const statusTarefa = req.body.statusTarefa ? true : false;
     const prioridade = req.body.prioridade;
 
-    const sql = `INSERT INTO Tarefas (nomeTarefa, dataCriacao, statusTarefa, prioridade) VALUES (?, NOW(), ?, ?)`;
+    const sql = `INSERT INTO Tarefas (statusTarefa, nomeTarefa, dataCriacao,  prioridade) VALUES (?, ?, NOW(),  ?)`;
 
-    conexao.query(sql, [nomeTarefa, dataCriacao, statusTarefa, prioridade], (error, results) => {
+    conexao.query(sql, [ statusTarefa, nomeTarefa, dataCriacao, prioridade], (error, results) => {
         if (error) {
             return res.status(500).send({
                 success: false,
