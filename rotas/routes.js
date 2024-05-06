@@ -8,6 +8,8 @@ const TaskController = require("../controller/TaskController")
 routes.get("/", (req, res) => { TaskController.getAll(req, res); });
 routes.post("/inserir", TaskController.inserirTarefa);
 routes.delete('/apagar/:tarefaID', TaskController.apagarTarefa);
+routes.put('/editar/:tarefaID', TaskController.editarTarefa);
+
 
 
  

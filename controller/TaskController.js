@@ -63,8 +63,31 @@ const apagarTarefa = (req, res) => {
     });
 };
 
+const editarTarefa = (req, res) => {
+    const { tarefaID } = req.params;
+    const { nomeTarefa, statusTarefa, prioridade } = req.body;
+
+    const sql = `UPDATE Tarefas SET nomeTarefa = ?, statusTarefa = ?, prioridade = ? WHERE TarefaID = ?`;
+
+    conexao.query(sql, [nomeTarefa, statusTarefa, prioridade, tarefaID], (error, results) => {
+        if (error) {
+            return res.status(500).json({
+                message: "Erro ao editar tarefa: " + error
+            });
+        }
+        if (results.affectedRows === 0) {
+            return res.status(404).json({
+                message: "Tarefa não encontrada."
+            });
+        }
+        return res.status(200).json({
+            message: "Tarefa atualizada com sucesso!",
+            data: results
+        });
+    });
+};
 
 module.exports = {
-  inserirTarefa, getAll, apagarTarefa
+  inserirTarefa, getAll, apagarTarefa, editarTarefa
 };
 
