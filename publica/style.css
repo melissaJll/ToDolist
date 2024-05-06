@@ -1,3 +1,8 @@
 h1{
     background-color: aqua;
 }
+
+.tarefa-desativada {
+    color: #ccc; /* Cor cinza */
+    text-decoration: line-through; /* Texto riscado */
+}
