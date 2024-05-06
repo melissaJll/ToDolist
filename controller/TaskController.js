@@ -1,10 +1,10 @@
-const conexao = require('../banco/db')
+const conexao = require('../banco/db');
+
 
 //Funções CRUD
-
-const getAll = (req, res) => {
-  return res.render("index");
-};
+// const getAll = (req, res) => {
+//   return res.render("index");
+// };
 
 
 const inserirTarefa = (req, res) => {
@@ -31,8 +31,20 @@ const inserirTarefa = (req, res) => {
     });
 };
 
+const getAll = (req, res) => {
+    const sql = 'SELECT * FROM Tarefas';
+    conexao.query(sql, (error, results) => {
+        if (error) {
+            res.status(500).send("Erro ao buscar tarefas: " + error);
+        } else {
+            res.render('index', { tarefas: results });
+        }
+    });
+};
+
+
 module.exports = {
-  getAll,
-  inserirTarefa,
+
+  inserirTarefa, getAll
 };
 

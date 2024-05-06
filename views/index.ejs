@@ -28,6 +28,14 @@
       <button type="submit">Adicionar</button>
     </form>
 
+    
+
+    <ul>
+        <% tarefas.forEach((tarefa) => { %>
+            <li><%= tarefa.nomeTarefa %></li>
+        <% }); %>
+    </ul>
+
     <script src="script.js"></script>
   </body>
 </html>

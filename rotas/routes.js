@@ -5,9 +5,11 @@ const app = express();
 //import { getAll } from "../controller/TaskController";
 const TaskController = require("../controller/TaskController")
 
-routes.get("/", TaskController.getAll);
-//routes.post("/criar", TaskController.createTask)
+// routes.get("/", TaskController.getAll);
 routes.post("/inserir", TaskController.inserirTarefa);
 
+//routes.post("/excluir", TaskController.excluirTarefa);
+
+routes.get("/tarefas", TaskController.getAll);
  
 module.exports = routes;
