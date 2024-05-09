@@ -15,20 +15,23 @@
         <button type="submit">Criar</button>
     </form>
     <% } else { %>
-    <form action="/update" method="post">
+    <form action="/updateById/<%= task._id %>" method="post">
         <input type="text" name="task" id="task" value="<%=  task.task %>" required>
         <button type="submit">atualizar</button>
     </form>
     <% } %>
     
-    <ul>
-        <% tasksList.forEach((task) =>{ %>
-            <li><%= task.task %> | <%= task.date.toLocaleString('pt-br') %> 
-                <a href="/getById/<%= task._id %>">Editar</a>
-                <a href="">Apagar</a>
-            </li>
-        <% }) %>
-    </ul>
+    <section>
+        <ul>
+            <% tasksList.forEach((task) =>{ %>
+                <li><%= task.task %> | <%= task.date.toLocaleString('pt-br') %> 
+                    <a href="/getById/<%= task._id %>">Editar</a>
+                    <a href="">Apagar</a>
+                </li>
+            <% }) %>
+        </ul>
+    </section>
+
     <script src="script.js"></script>
 </body>
 </html>
