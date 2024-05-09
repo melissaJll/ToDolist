@@ -2,56 +2,60 @@ const Task = require("../models/Task");
 
 //Funções CRUD
 
+
 const getAll = async (req, res) => {
-  try {
-    const tasksList = await Task.find();
-    return res.render("index", { tasksList, task: null });
-  } catch (err) {
-    res.status(500).send({ error: err.message });
-  }
-};
+    try {
+      const tasksList = await Task.find();
+      res.json({ tasksList });
+    } catch (err) {
+      res.status(500).json({ error: err.message });
+    }
+  };
+  
+  const createTask = async (req, res) => {
+    const task = req.body;
+    if (!task.task) {
+      res.status(400).json({ error: "Task is required" });
+      return;
+    }
+    try {
+      const newTask = await Task.create(task);
+      res.status(201).json(newTask);
+    } catch (err) {
+      res.status(500).json({ error: err.message });
+    }
+  };
 
-const createTask = async (req, res) => {
-  const task = req.body;
-
-  if (!task.task) {
-    return res.redirect("/");
-  }
-  try {
-    await Task.create(task);
-    return res.redirect("/");
-  } catch (err) {
-    res.status(500).send({ error: err.message });
-  }
-};
-
-const getById = async (req, res) => {
-  try {
-    const task = await Task.findOne({ _id: req.params.id });
-    const tasksList = await Task.find();
-    res.render("index", { task, tasksList });
-  } catch (err) {
-    res.status(500).send({ error: err.message });
-  }
-};
-
+  const getById = async (req, res) => {
+    try {
+      const task = await Task.findOne({ _id: req.params.id });
+      if (!task) {
+        return res.status(404).json({ error: "Tarefa não encontrada" });
+      }
+      res.json({ task });
+    } catch (err) {
+      res.status(500).json({ error: err.message });
+    }
+  };
+  
+// Função para atualizar uma tarefa
 const updateTask = async (req, res) => {
   try {
     const task = req.body;
     await Task.updateOne({ _id: req.params.id }, task);
-    res.redirect("/");
+    res.json({ message: "Tarefa atualizada com sucesso!" });
   } catch (err) {
-    res.status(500).send({ error: err.message });
+    res.status(500).json({ error: err.message });
   }
 };
 
+
 const deleteTask = async (req, res) => {
   try {
-    const taskDelete = await Task.findOne({ _id: req.params.id });
-    const tasksList = await Task.find();
-    res.render("index", { task: null, tasksList });
+    await Task.deleteOne({ _id: req.params.id });
+    res.json({ message: "Tarefa deletada com sucesso!" });
   } catch (err) {
-    res.status(500).send({ error: err.message });
+    res.status(500).json({ error: err.message });
   }
 };
 
