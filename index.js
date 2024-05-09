@@ -1,18 +1,21 @@
 //import { routes } from "./rotas/routes";
-const mongoose = require('mongoose');
+// const mongoose = require('mongoose');
 const express = require("express");
 const path = require("path");
 const routes = require("./rotas/routes")
-const connectToDb = require("./banco/db");
+const sqlite3 = require("sqlite3").verbose()
+// const connectToDb = require("./banco/db");
+// connectToDb();
 
-connectToDb();
 
 const app = express();
-const port = 3000;
+let port =  3000 || process.env.PORT ;
+
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-// app.set("view engine", "ejs");
+const db = new sqlite3.Database('database.db')
+
 app.use(express.static(path.join(__dirname, "publica")));
 
 //Trazendo rotas do arquivo só para isso
