@@ -23,7 +23,7 @@
     
     <ul>
         <% tasksList.forEach((task) =>{ %>
-            <li><%= task.task %> | <%= task.date.toLocaleDateString('pt-br') %> 
+            <li><%= task.task %> | <%= task.date.toLocaleString('pt-br') %> 
                 <a href="/getById/<%= task._id %>">Editar</a>
                 <a href="">Apagar</a>
             </li>
