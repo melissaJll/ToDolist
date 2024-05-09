@@ -7,7 +7,7 @@ const Task = require('../models/Task');
 const getAll = async (req,res) => {
     try {
         const tasksList = await Task.find();
-        return res.render("index", tasksList);
+        return res.render("index", {tasksList});
     } catch (err) {
         res.status(500).send({error: err.message});
     }
@@ -16,7 +16,7 @@ const getAll = async (req,res) => {
 
 const createTask = async (req, res) => {
     const task = req.body;
-    
+
     if (!task.task) {
         return res.redirect("/");
     }
