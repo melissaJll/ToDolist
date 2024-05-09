@@ -9,14 +9,24 @@
 <body>
     <h1>Teste</h1>
 
+    <%  if (task ==null) { %>
     <form action="/create" method="post">
-        <input type="text" name="task" id="task" placeholder="insira tarefa" required>
+        <input type="text" name="task" id="task" placeholder="Insira tarefa" required>
         <button type="submit">Criar</button>
     </form>
+    <% } else { %>
+    <form action="/update" method="post">
+        <input type="text" name="task" id="task" value="<%=  task.task %>" required>
+        <button type="submit">atualizar</button>
+    </form>
+    <% } %>
     
     <ul>
         <% tasksList.forEach((task) =>{ %>
-            <li><%= task.task %> | <%= task.date.toLocaleDateString('pt-br') %> </li>
+            <li><%= task.task %> | <%= task.date.toLocaleDateString('pt-br') %> 
+                <a href="/getById/<%= task._id %>">Editar</a>
+                <a href="">Apagar</a>
+            </li>
         <% }) %>
     </ul>
     <script src="script.js"></script>
