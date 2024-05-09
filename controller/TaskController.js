@@ -29,12 +29,11 @@ const getAll = (req, res) => {
 const inserirTarefa = (req, res) => {
     const nomeTarefa = req.body.nomeTarefa;
     const dataCriacao = req.body.dataCriacao;
-    const statusTarefa = req.body.statusTarefa ? true : false;
     const prioridade = req.body.prioridade;
 
-    const sql = `INSERT INTO Tarefas (statusTarefa, nomeTarefa, dataCriacao, prioridade) VALUES (?, ?, NOW(), ?)`;
+    const sql = `INSERT INTO Tarefas ( nomeTarefa, dataCriacao, prioridade) VALUES (?,  NOW(), ?)`;
 
-    conexao.query(sql, [statusTarefa, nomeTarefa, dataCriacao, prioridade], (error, results) => {
+    conexao.query(sql, [ nomeTarefa, dataCriacao, prioridade], (error, results) => {
         if (error) {
             return res.status(500).json({
                 message: "Erro ao inserir tarefa: " + error
@@ -65,11 +64,11 @@ const apagarTarefa = (req, res) => {
 
 const editarTarefa = (req, res) => {
     const { tarefaID } = req.params;
-    const { nomeTarefa, statusTarefa, prioridade } = req.body;
+    const { nomeTarefa,  prioridade } = req.body;
 
-    const sql = `UPDATE Tarefas SET nomeTarefa = ?, statusTarefa = ?, prioridade = ? WHERE TarefaID = ?`;
+    const sql = `UPDATE Tarefas SET nomeTarefa = ?, prioridade = ? WHERE TarefaID = ?`;
 
-    conexao.query(sql, [nomeTarefa, statusTarefa, prioridade, tarefaID], (error, results) => {
+    conexao.query(sql, [nomeTarefa,  prioridade, tarefaID], (error, results) => {
         if (error) {
             return res.status(500).json({
                 message: "Erro ao editar tarefa: " + error
